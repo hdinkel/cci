@@ -19,12 +19,16 @@ from django.urls import path, include
 from alerts import urls
 from rest_framework import routers
 from alerts import views
+from rest_framework_swagger.views import get_swagger_view
 
 router = routers.DefaultRouter()
 router.register(r'alerts', views.AlertViewSet)
+
+schema_view = get_swagger_view(title='Alerts API')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('alerts/', include('alerts.urls')),
     url(r'^api/', include(router.urls)),
+    url(r'^swagger$', schema_view)
     ]
