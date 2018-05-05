@@ -80,11 +80,11 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': 'db.sqlite',
-#        'ENGINE': 'django.db.backends.postgresql',
-#        'NAME': 'postgres',
-#        'USER': 'postgres',
-#        'HOST': 'db',
-#        'PORT': 5432,
+        #        'ENGINE': 'django.db.backends.postgresql',
+        #        'NAME': 'postgres',
+        #        'USER': 'postgres',
+        #        'HOST': 'db',
+        #        'PORT': 5432,
     }
 }
 
@@ -126,3 +126,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+EBAY_API_KEY = 'ebayapi-codechal-PRD-ae0331a4f-14fc2ed4'
