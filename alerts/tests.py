@@ -6,7 +6,7 @@ from rest_framework import status
 from rest_framework.test import APITestCase
 from .models import Alert
 from .serializers import AlertSerializer
-from .views import ebay_search
+from .management.commands.send_emails import ebay_search
 
 
 class AccountTests(APITestCase):
@@ -100,7 +100,7 @@ class GetAllAlertsTest(TestCase):
     def test_ebay_search(self):
         """ try to run the ebay search """
         search = ebay_search('apple')
-        self.assertEqual(len(search), 20)
+        self.assertEqual(len(search), 100)
 
     def test_ebay_search_fails(self):
         """ try to run the ebay search """
