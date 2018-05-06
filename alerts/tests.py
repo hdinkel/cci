@@ -58,6 +58,17 @@ class GetAllAlertsTest(TestCase):
         alert_count = Alert.objects.count()
         self.assertEqual(alert_count, 4)
 
+    def test_create_alert_fails(self):
+        """ try to create an alert with an error"""
+        response = self.client.post('/api/alerts/',
+                                    {'user_name': 'Hans',
+                                     'user_email': 'this is no email',
+                                     'phrase': 'windows xp',
+                                     'update_time': '30'})
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        alert_count = Alert.objects.count()
+        self.assertEqual(alert_count, 3)
+
     def test_delete_alert(self):
         """ try to delete an alert """
         response = self.client.delete('/api/alerts/1/')
