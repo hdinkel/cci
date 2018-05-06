@@ -3,13 +3,9 @@ Django views for alerts
 """
 
 # from django.shortcuts import render
-import datetime
-from django.conf import settings
 from django.urls import reverse_lazy
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from ebaysdk.exception import ConnectionError
-from ebaysdk.finding import Connection
 from rest_framework import viewsets
 from .models import Alert
 from .serializers import AlertSerializer
@@ -69,27 +65,3 @@ class AlertViewSet(viewsets.ModelViewSet):  # pylint: disable=too-many-ancestors
     """
     queryset = Alert.objects.all()
     serializer_class = AlertSerializer
-
-def ebay_search(keywords):
-    """
-    Search Ebay for given keywords.
-    returns: list of items
-
-    """
-
-    try:
-        api = Connection(appid=settings.EBAY_API_KEY, config_file=None)
-        response = api.execute('findItemsAdvanced', {'keywords': keywords})
-
-        assert response.reply.ack == 'Success'
-        assert isinstance(response.reply.timestamp, datetime.datetime)
-        assert isinstance(response.reply.searchResult.item, list)
-        assert isinstance(response.dict(), dict)
-        items = response.reply.searchResult.item[:20]
-        return items
-
-    except ConnectionError as error:
-        # TO-DO: do something more meaningful with the error:
-        # print(error)
-        # print(error.response.dict())
-        return None

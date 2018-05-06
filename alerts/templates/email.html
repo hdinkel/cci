@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<body>
+
+<div> Hello, </div>
+
+<div> Here's your update to your ebay search:</div>
+
+<ul>{% for result in results %}
+    <li>{{ result.1 }}, <b>{{ result.0 }}</b> <a href="{{ result.3 }}">{{ result.2 }}</a></li>
+{% endfor %}
+</ul>
+
+
+</body>
+</html>
