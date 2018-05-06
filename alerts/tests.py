@@ -3,8 +3,25 @@ Tests for Alerts
 """
 from django.test import TestCase, Client
 from rest_framework import status
+from rest_framework.test import APITestCase
 from .models import Alert
 from .serializers import AlertSerializer
+from .views import ebay_search
+
+
+class AccountTests(APITestCase):
+
+    def test_create_account(self):
+        """
+        Ensure we can create a new alert object.
+        """
+        url = '/api/alerts/'
+        data = {'user_name': 'Hans', 'user_email': 'hans@home.de', 'phrase': 'windows xp', 'update_time': '30'}
+        response = self.client.post(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(Alert.objects.count(), 1)
+        self.assertEqual(Alert.objects.get().user_name, 'Hans')
+
 
 class GetAllAlertsTest(TestCase):
     """
@@ -79,3 +96,15 @@ class GetAllAlertsTest(TestCase):
 #        serializer = AlertSerializer(alerts, many=True)
 #        self.assertEqual(response.data, serializer.data)
 #        self.assertEqual(len(response.data), 3)
+
+    def test_ebay_search(self):
+        """ try to run the ebay search """
+        search = ebay_search('apple')
+        self.assertEqual(len(search), 20)
+
+    def test_ebay_search_fails(self):
+        """ try to run the ebay search """
+        from django.conf import settings
+        settings.EBAY_API_KEY = ''
+        search = ebay_search('apple')
+        self.assertEqual(search, None)

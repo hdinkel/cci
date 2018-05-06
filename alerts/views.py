@@ -70,13 +70,6 @@ class AlertViewSet(viewsets.ModelViewSet):  # pylint: disable=too-many-ancestors
     queryset = Alert.objects.all()
     serializer_class = AlertSerializer
 
-#    permission_classes = (IsOwner,)
-#    action_permissions = {
-#        IsAuthenticated: ['update', 'destroy', 'list', 'create'],
-#        AllowAny: ['retrieve']
-#    }
-
-
 def ebay_search(keywords):
     """
     Search Ebay for given keywords.
@@ -97,6 +90,6 @@ def ebay_search(keywords):
 
     except ConnectionError as error:
         # TO-DO: do something more meaningful with the error:
-        print(error)
-        print(error.response.dict())
+        # print(error)
+        # print(error.response.dict())
         return None
