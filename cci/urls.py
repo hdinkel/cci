@@ -29,6 +29,6 @@ schema_view = get_swagger_view(title='Alerts API')
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('alerts/', include('alerts.urls')),
-    url(r'^api/', include(router.urls)),
-    url(r'^swagger$', schema_view)
+    url(r'^api/', include(router.urls), name='api'),
+    url(r'^swagger$', schema_view, name='swagger')
     ]
