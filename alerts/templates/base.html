@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">  
+<link rel="stylesheet" href="https://bootswatch.com/4/cerulean/bootstrap.min.css">
+
+    <title>{% block title %} Ebay Alerts {% endblock %}</title>
+</head>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar navbar-default" role="navigation">
+    <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+      <a class="navbar-brand" href="#">Ebay Alerts</a>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item ">
+      <a class="nav-item nav-link" href="/alerts/">Home</a>
+            </li>
+            <li class="nav-item">
+      <a class="nav-item nav-link" href="/alerts/new">New Alert</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+        {{ message }}
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% block content %}
+
+{% endblock %}
+
+<div class='footer'>
+</div>
+        
+</body>
+</html>
