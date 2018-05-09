@@ -13,13 +13,6 @@ from .serializers import AlertSerializer
 
 # Create your views here.
 
-class AlertModelFormView():# pylint: disable=too-few-public-methods
-    """
-    ModelFormView for Alerts, allowing creating and editing Alerts
-    """
-    alert = Alert.objects.get(pk=3)
-    form = AlertForm(instance=alert)
-
 
 class AlertList(ListView):  # pylint: disable=too-many-ancestors
     """
