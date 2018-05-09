@@ -20,12 +20,10 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         now = datetime.datetime.now()
         minutes = [2, 10, 30]
-#        minutes = [2]
         results = []
         for minute in minutes.copy():
-            if (now.minute % minute) != 0:
-#                minutes.remove(minute)
-                print(minute, now.minute, now.minute % minute, (now.minute % minute) == 0)
+            if (now.minute % minute) != 0:  # check if current time is divisible by the given minute
+                minutes.remove(minute)  # if not, then remove it from the task list
         for minute in minutes:
             for alert in Alert.objects.filter(update_time=minute):
                 print("searching ebay for {}".format(alert.phrase))
@@ -44,7 +42,11 @@ def send_email(user_email, results):
     """
     subject = "Ebay update for {}".format(datetime.datetime.now())
     message = render_to_string('email.html', {'email': user_email, 'results': results})
-    send_mail(subject, message, settings.EMAIL_HOST_USER, [user_email, ], fail_silently=False,
+    send_mail(subject,
+              message,
+              settings.EMAIL_HOST_USER,
+              [user_email, ],
+              fail_silently=False,
               html_message=message)
 
 def ebay_search(keywords):
