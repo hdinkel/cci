@@ -1,5 +1,4 @@
-# Ebay Alert Codechallenge
-
+# Ebay Alert 
 
 A service to manage alerts for products prices on Ebay.com; the service
 will allow a user to create an alert so he can receive updates about
@@ -26,6 +25,13 @@ Alternatively, install dependencies on your own machine and run locally:
     python manage.py runserver
 
 In either case you can then connect to ``http://127.0.0.1:8000``.
+
+You should see an empty list, which you can populate by clicking on ''New Alert'':
+
+![New Alert](docs/img/create_view)
+
+This is how list looks like populated with some alerts:
+![List View](docs/img/list_view)
 
 ### Exploring the API
 To explore the API use swagger at the url ``/swagger``, so go to
