@@ -15,6 +15,7 @@
                   <th class="header"> Email <i class="icon-sort"></i></th>
                   <th class="header"> Time Interval<i class="icon-sort"></i></th>
                   <th class="header"> Search phrase <i class="icon-sort"></i></th>
+                  <th class="header"> </th>
                 </tr>
             </thead>
             <tbody>
@@ -25,6 +26,7 @@
                         <td><a href="/alerts/{{a.pk}}">{{a.user_email}}</a></td>
                         <td><a href="/alerts/{{a.pk}}">{{a.update_time}}</a></td>
                         <td><a href="/alerts/{{a.pk}}">{{a.phrase}}</a></td>
+                        <td><a href="/alerts/{{a.pk}}/delete">Delete</a></td>
                     </tr>
                     {% endfor %}
             
