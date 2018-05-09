@@ -4,7 +4,6 @@ main urls.py for project
 from django.urls import path
 from . import views
 
-# TODO: urlpatterns
 urlpatterns = (
     path('', views.AlertList.as_view(), name='alert_list'),
     path('new', views.AlertCreate.as_view(), name='alert_create'),

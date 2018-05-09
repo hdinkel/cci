@@ -13,7 +13,7 @@ from .serializers import AlertSerializer
 
 # Create your views here.
 
-class AlertModelFormView():
+class AlertModelFormView():# pylint: disable=too-few-public-methods
     """
     ModelFormView for Alerts, allowing creating and editing Alerts
     """

@@ -16,18 +16,18 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from alerts import views
 from rest_framework_swagger.views import get_swagger_view
+from alerts import views
 
-router = routers.DefaultRouter()
-router.register(r'alerts', views.AlertViewSet)
+ROUTER = routers.DefaultRouter()
+ROUTER.register(r'alerts', views.AlertViewSet)
 
-schema_view = get_swagger_view(title='Alerts API')
+SCHEMA_VIEW = get_swagger_view(title='Alerts API')
 
 urlpatterns = [
     path('', views.AlertList.as_view(), name='alert_list'),
     path('alerts/', include('alerts.urls')),
-    path(r'^api/', include(router.urls), name='api'),
-    path(r'^swagger$', schema_view, name='swagger'),
+    path('api/', include(ROUTER.urls), name='api'),
+    path('swagger/', SCHEMA_VIEW, name='swagger'),
     path('admin/', admin.site.urls),
     ]

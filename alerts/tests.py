@@ -10,13 +10,17 @@ from .management.commands.send_emails import ebay_search
 
 
 class AccountTests(APITestCase):
+    """
+    Test module to test the creation of alerts
+    """
 
     def test_create_account(self):
         """
         Ensure we can create a new alert object.
         """
         url = '/api/alerts/'
-        data = {'user_name': 'Hans', 'user_email': 'hans@home.de', 'phrase': 'windows xp', 'update_time': '30'}
+        data = {'user_name': 'Hans', 'user_email': 'hans@home.de',
+                'phrase': 'windows xp', 'update_time': '30'}
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(Alert.objects.count(), 1)
