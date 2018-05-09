@@ -42,6 +42,75 @@ To create new alerts via the REST API, in swagger click on "alerts", "POST /api/
 
 ![Swagger](docs/img/swagger.png)
 
+Alternatively here's a list of REST urls you can try:
+
+#### List of all Alerts:
+You can GET all alerts by accessing the url ``/api/alerts``
+
+Example:
+
+    curl -X GET "http://127.0.0.1:8000/api/alerts/" 
+
+Example response:
+
+    [
+      {
+        "user_name": "Holger",
+        "user_email": "holger@nowhere.de",
+        "update_time": "30",
+        "phrase": "thinkpad lenovo"
+      },
+      {
+        "user_name": "Alice",
+        "user_email": "alice@nowhere.com",
+        "update_time": "2",
+        "phrase": "apple macbook"
+      },
+      {
+        "user_name": "Bob",
+        "user_email": "bob@nowhere.com",
+        "update_time": "10",
+        "phrase": "iphone 8"
+      },
+      {
+        "user_name": "Chris",
+        "user_email": "chris@nowhere.com",
+        "update_time": "30",
+        "phrase": "Asus monitor"
+      }
+    ]
+
+#### GET an individual alert
+An individual alert can be retrieved by appending its primary key to the url, like so: ``/api/alerts/3/``
+
+Example:
+
+    curl -X GET "http://127.0.0.1:8000/api/alerts/3/" 
+
+Example response:
+
+    {
+    "user_name": "Alice",
+    "user_email": "alice@nowhere.com",
+    "update_time": "2",
+    "phrase": "apple macbook"
+    }"
+
+#### Creating a new alert
+To add an alert, you need to POST to the url ``alerts/api``.
+
+Example:
+    
+    curl -X POST "http://127.0.0.1:8000/api/alerts/" -d "{  \"user_name\": \"David\",  \"user_email\": \"david@nowhere.com\",  \"update_time\": \"30\",  \"phrase\": \"slingshot\"}"
+
+Example response:
+
+    {
+    "user_name": "David",
+    "user_email": "david@nowhere.com",
+    "update_time": "30",
+    "phrase": "slingshot"
+    }
 
 ## Running the ebay searches
 
