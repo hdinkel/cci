@@ -8,9 +8,18 @@ from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from rest_framework import viewsets
 from .models import Alert
+from .forms import AlertForm
 from .serializers import AlertSerializer
 
 # Create your views here.
+
+class AlertModelFormView():
+    """
+    ModelFormView for Alerts, allowing creating and editing Alerts
+    """
+    alert = Alert.objects.get(pk=3)
+    form = AlertForm(instance=alert)
+
 
 class AlertList(ListView):  # pylint: disable=too-many-ancestors
     """
