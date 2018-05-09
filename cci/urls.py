@@ -14,9 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.conf.urls import url
 from django.urls import path, include
-from alerts import urls
 from rest_framework import routers
 from alerts import views
 from rest_framework_swagger.views import get_swagger_view
@@ -27,8 +25,9 @@ router.register(r'alerts', views.AlertViewSet)
 schema_view = get_swagger_view(title='Alerts API')
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('', views.AlertList.as_view(), name='alert_list'),
     path('alerts/', include('alerts.urls')),
-    url(r'^api/', include(router.urls), name='api'),
-    url(r'^swagger$', schema_view, name='swagger')
+    path(r'^api/', include(router.urls), name='api'),
+    path(r'^swagger$', schema_view, name='swagger'),
+    path('admin/', admin.site.urls),
     ]
